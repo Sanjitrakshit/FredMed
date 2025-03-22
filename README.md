@@ -1,2 +1,170 @@
 # FredMed
-Vyto.html
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>FREDMED - AI Symptom Checker</title>
+     <link rel="stylesheet" href="styles.css">
+     <style>
+         body {
+             font-family: Arial, sans-serif;
+             background-color: #e3f2fd;
+             margin: 0;
+             padding: 0;
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+             min-height: 100vh;
+         }
+         header {
+             background-color: #0288d1;
+             color: #fff;
+             width: 100%;
+             text-align: center;
+             padding: 2rem 0;
+             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+             border-bottom-left-radius: 20px;
+             border-bottom-right-radius: 20px;
+         }
+         section {
+             background-color: #ffffff;
+             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+             border-radius: 15px;
+             padding: 30px;
+             margin: 20px 0;
+             width: 90%;
+             max-width: 750px;
+             transition: transform 0.3s ease;
+         }
+         section:hover {
+             transform: translateY(-5px);
+         }
+         textarea {
+             width: 100%;
+             height: 150px;
+             padding: 12px;
+             border: 3px solid #0288d1;
+             border-radius: 10px;
+             resize: none;
+         }
+         button {
+             background-color: #0288d1;
+             color: #fff;
+             border: none;
+             padding: 14px 30px;
+             border-radius: 10px;
+             cursor: pointer;
+             width: 100%;
+             margin-top: 12px;
+             font-size: 1.2rem;
+             transition: background-color 0.3s ease;
+         }
+         button:hover {
+             background-color: #026fa1;
+         }
+         ul {
+             list-style-type: none;
+             padding: 0;
+         }
+         li {
+             margin: 8px 0;
+         }
+         #result {
+             margin-top: 15px;
+             font-weight: bold;
+             color: #0288d1;
+             text-align: center;
+         }
+         footer {
+             background-color: #01579b;
+             color: #fff;
+             text-align: center;
+             width: 100%;
+             padding: 12px 0;
+             position: relative;
+         }
+     </style>
+ </head>
+ <body>
+     <header>
+         <h1>FREDMED - AI Symptom Checker</h1>
+         <p>Your Trusted Partner for Early Diagnosis and Expert Advice</p>
+     </header>
+ 
+     <section class="symptom-checker">
+         <h2>Input Your Symptoms</h2>
+         <form id="symptom-form">
+             <textarea id="symptoms" placeholder="Describe your symptoms..."></textarea>
+             <button type="button" onclick="analyzeSymptoms()">Check Symptoms</button>
+         </form>
+         <div id="result"></div>
+     </section>
+ 
+     <section class="home-remedies">
+         <h2>Home Remedies</h2>
+         <ul>
+             <li><strong>Fever:</strong> Drink warm fluids, rest, and stay hydrated.</li>
+             <li><strong>Cold:</strong> Steam inhalation and ginger tea for relief.</li>
+             <li><strong>Headache:</strong> Apply a cold compress and rest in a dark room.</li>
+         </ul>
+     </section>
+ 
+     <section class="doctor-consultation">
+         <h2>Consult a Doctor</h2>
+         <p>Connect with certified doctors for expert guidance at your convenience.</p>
+         <button onclick="connectDoctor()">Consult Now</button>
+     </section>
+ 
+     <section class="trust-info">
+         <h2>Why Trust Us?</h2>
+         <p>✔ Collaborations with licensed doctors</p>
+         <p>✔ HIPAA/GDPR compliance for data security</p>
+         <p>✔ Real-time expert verification of AI results</p>
+         <p>✔ Comprehensive and updated medical database</p>
+     </section>
+ 
+     <footer>
+         <p>&copy; 2025 FREDMED. All rights reserved. Empowering Health with AI.</p>
+     </footer>
+ 
+     <script>
+         const diseaseData = [
+             { name: 'Common Cold', symptoms: ['sneezing', 'sore throat', 'runny nose', 'mild cough', 'congestion', 'mild fatigue'] },
+             { name: 'Influenza (Flu)', symptoms: ['fever', 'chills', 'body aches', 'sore throat', 'fatigue', 'headache', 'cough'] },
+             { name: 'Malaria', symptoms: ['fever', 'chills', 'sweating', 'headache', 'nausea', 'vomiting'] },
+             { name: 'Pneumonia', symptoms: ['cough', 'fever', 'chills', 'shortness of breath'] },
+             { name: 'Diabetes Type 1', symptoms: ['frequent urination', 'thirst', 'hunger', 'fatigue'] },
+             { name: 'Hypertension', symptoms: ['headaches', 'dizziness', 'blurred vision'] },
+             { name: 'Migraine', symptoms: ['throbbing headache', 'nausea', 'light sensitivity'] },
+             { name: 'Stroke', symptoms: ['numbness', 'weakness', 'confusion', 'severe headache'] }
+         ];
+ 
+         function analyzeSymptoms() {
+             const inputSymptoms = document.getElementById('symptoms').value.toLowerCase().split(',');
+             const resultDiv = document.getElementById('result');
+             const possibleConditions = [];
+ 
+             diseaseData.forEach(disease => {
+                 const matchedSymptoms = disease.symptoms.filter(symptom =>
+                     inputSymptoms.some(inputSymptom => inputSymptom.trim().includes(symptom))
+                 );
+ 
+                 if (matchedSymptoms.length >= 2) {
+                     possibleConditions.push(disease.name);
+                 }
+             });
+ 
+             if (possibleConditions.length > 0) {
+                 resultDiv.innerHTML = `Possible Conditions: ${possibleConditions.join(', ')}.`;
+             } else {
+                 resultDiv.innerHTML = 'No exact matches found. Please consult a healthcare professional.';
+             }
+         }
+ 
+         function connectDoctor() {
+             alert('Redirecting to doctor consultation portal...');
+         }
+     </script>
+ </body>
+ </html>
