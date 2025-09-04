@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FredMed Symptom Guide</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <div class="navbar">
+      <div class="brand">
+        <span class="brand-primary">Fred</span><span class="brand-secondary">Med</span>
+      </div>
+    </div>
+
+    <!-- Login Page -->
+    <div class="page" id="login-page">
+      <div class="content-container">
+        <div class="header text-center animate-fade-in">
+          <h1 class="title">
+            <span class="text-primary">Fred</span>
+            <span class="text-secondary">Med</span>
+          </h1>
+          <p class="subtitle">
+            Your personal symptom checker for health concerns and home remedies
+          </p>
+        </div>
+
+        <div class="card language-card">
+          <div class="language-selector animate-fade-in">
+            <div class="icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <h2>Select Language</h2>
+            <div class="language-buttons">
+              <button class="btn language-btn active" data-lang="en">English</button>
+              <button class="btn language-btn" data-lang="hi">हिन्दी</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card login-card">
+          <div class="card-content">
+            <h2>Login</h2>
+            <form id="login-form">
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="name@example.com" required>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="******" required>
+              </div>
+              <div class="form-group form-actions">
+                <button type="submit" class="btn btn-primary">Login</button>
+              </div>
+              <div class="guest-login">
+                <button type="button" id="guest-login-btn" class="btn btn-text">Continue as Guest</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Symptoms Page -->
+    <div class="page hidden" id="symptoms-page">
+      <div class="content-container">
+        <div class="header">
+          <h1>Select Your Symptoms</h1>
+          <p class="subtitle">Choose all symptoms you're currently experiencing</p>
+        </div>
+
+        <div class="symptoms-grid" id="symptoms-grid">
+          <!-- Symptoms will be added dynamically by JavaScript -->
+        </div>
+
+        <div class="actions-container">
+          <div class="selected-count">
+            <span id="selected-count">0</span> symptoms selected
+          </div>
+          <button id="continue-btn" class="btn btn-primary" disabled>
+            Continue
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detailed Questions Page -->
+    <div class="page hidden" id="detailed-questions-page">
+      <div class="content-container">
+        <div class="header">
+          <h1>Additional Information</h1>
+          <p class="subtitle">Please provide more details about your symptoms</p>
+        </div>
+
+        <div id="questions-container">
+          <!-- Questions will be added dynamically by JavaScript -->
+        </div>
+
+        <div class="actions-container">
+          <button id="back-to-symptoms-btn" class="btn btn-outline">Back</button>
+          <button id="submit-answers-btn" class="btn btn-primary">
+            Get Results
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Page -->
+    <div class="page hidden" id="results-page">
+      <div class="content-container">
+        <div class="header text-center">
+          <h1>Possible Conditions</h1>
+          <p class="subtitle">Based on the symptoms you provided, here are some possible conditions</p>
+        </div>
+
+        <div id="severe-warning" class="alert-box hidden">
+          <div class="alert-icon">
+            <i class="fas fa-exclamation-circle"></i>
+          </div>
+          <div class="alert-content">
+            <p class="alert-title">Seek Medical Attention</p>
+            <p class="alert-message">
+              Some of your symptoms may indicate a serious condition. Please consult a healthcare professional promptly.
+            </p>
+          </div>
+        </div>
+
+        <div id="results-container">
+          <!-- Results will be added dynamically by JavaScript -->
+        </div>
+
+        <!-- Symptom Remedies Section -->
+        <div id="symptom-remedies" class="mt-4">
+          <h2 class="text-center mb-4">Home Remedies for Your Symptoms</h2>
+          <div id="remedies-container">
+            <!-- Remedies will be added dynamically by JavaScript -->
+          </div>
+        </div>
+
+        <div class="disclaimer-box">
+          <p>Remember that this is not a medical diagnosis. If you're concerned about your health, please consult with a healthcare professional.</p>
+          <button id="start-over-btn" class="btn btn-primary">
+            <i class="fas fa-redo"></i> Start Over
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">
+    <div class="toast-content">
+      <i id="toast-icon" class="fas"></i>
+      <div class="toast-message" id="toast-message"></div>
+    </div>
+    <div class="toast-progress"></div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
